@@ -1,0 +1,5 @@
+name: Madison
+author: Scifi9902
+description: Open-source HCF core
+version: 1.0-SNAPSHOT
+main: io.github.scifi9902.madison.MadisonPlugin
