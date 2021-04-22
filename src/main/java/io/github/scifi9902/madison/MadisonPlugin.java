@@ -3,12 +3,14 @@ package io.github.scifi9902.madison;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.LongSerializationPolicy;
+import io.github.scifi9902.madison.command.TestCommand;
 import io.github.scifi9902.madison.database.MongoHandler;
 import io.github.scifi9902.madison.handler.HandlerManager;
 import io.github.scifi9902.madison.handler.IHandler;
 import io.github.scifi9902.madison.profile.ProfileHandler;
 import io.github.scifi9902.madison.profile.ProfileListener;
 import io.github.scifi9902.madison.utils.Config;
+import io.github.scifi9902.madison.utils.command.CommandHandler;
 import lombok.Getter;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -26,6 +28,8 @@ public class MadisonPlugin extends JavaPlugin {
 
     private HandlerManager handlerManager;
 
+    private CommandHandler commandHandler;
+
     public void onEnable() {
         this.config = new Config("config", this, this.getDataFolder().getAbsolutePath());
         this.handlerManager = new HandlerManager();
@@ -42,7 +46,9 @@ public class MadisonPlugin extends JavaPlugin {
     }
 
     private void registerCommands() {
+        this.commandHandler = new CommandHandler(this, "madison");
 
+        this.commandHandler.registerCommand(new TestCommand());
     }
 
     private void registerListeners() {
